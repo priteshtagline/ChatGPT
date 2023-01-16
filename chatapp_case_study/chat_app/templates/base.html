@@ -1,0 +1,52 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block link %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    {% endblock %}
+
+    <title>{% block title%} {% endblock %}</title>
+    <style>{% block css %} {% endblock %}</style>
+    <script>{% block script %} {% endblock %}</script>
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">Chat app</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'chat' %}">Let's chat</a>
+                        </li>
+                        <a class="nav-link" href="{% url 'logout' %}"><u><i>{{user}}</i></u> &nbsp Log out</a>
+                        {% else %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'login' %}">Log in</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'register' %}">Sign up</a>
+                        </li>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block body %} {% endblock %}
+
+</body>
+
+</html>

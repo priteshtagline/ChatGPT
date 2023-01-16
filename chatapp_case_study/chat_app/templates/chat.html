@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block css %} 
+    input{
+        width: 100%;
+    }
+    .input-field{
+        display:flex;
+        align-items:center;
+        margin-bottom: 10px;
+    }
+    .input-field input{
+        margin-right: 10px;
+    }
+{% endblock %}
+
+{% block script %} 
+    window.onload = function() {
+        window.scrollTo(0, document.body.scrollHeight);
+};
+{% endblock %}
+
+
+{% block body %} 
+{% if all_chats %}
+    <div class="container">
+        <div class="columns list  is-multiline p-0 pt-6 last">
+            {% for chat in all_chats %}
+            <div> {{ chat.author }} :  </div>
+            <div class="text-sm-start border border-success p-2 mb-2">{{chat.message}}</div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+<div >
+    <form method="post" class="container" >
+        {% csrf_token %}
+        <p></p>
+        <div> {{user.name}} :  </div>
+        <div class="input-field">
+            <input class="border-success border p-1" type="text" name="msg">
+            <a class="nav-link" href="{% url 'chat' %}"><button type="submit">Enter</button></a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
