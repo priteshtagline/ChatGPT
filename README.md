@@ -27,6 +27,14 @@ python manage.py runserver
 Go to browser and paste "http://127.0.0.1:8000/" in search bar
 ```
 
+Test video:
+
+
+https://user-images.githubusercontent.com/77622078/212668221-cb48c7d4-a792-4383-b921-c7c1afa15a21.mp4
+
+
+
+
 To check mongodb database run commands:
 ```
 mongosh 
@@ -51,3 +59,4 @@ To find data of collection "chat_app_chat"
 ```
 db.chat_app_chat.find()
 ```
+
