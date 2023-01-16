@@ -1,18 +1,16 @@
 import openai
-from pymongo import MongoClient
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 import os
-from django.conf import settings
 from django.http import HttpResponse
 from .models import *
 from .forms import *
 from django.shortcuts import render, redirect
 import requests
-from django.contrib.auth.decorators import login_required
+from decouple import config
 
 
-openai.api_key = "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"
+openai.api_key = config("OPEN_AI_API")
 
 
 def home(request):
@@ -44,7 +42,6 @@ def user_login(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, email = username, password = password)
-        print(user)
         if user is not None:
             request.session['user_id'] = user.id
             form = login(request, user)
